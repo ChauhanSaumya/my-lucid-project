@@ -337,14 +337,25 @@ export default function App() {
                   icon: "⚡",
                 },
               ].map((feature, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 + idx * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -8 }}
-                  className="group bg-teal-50 border border-teal-200 rounded-xl p-6 cursor-pointer hover:shadow-lg hover:border-teal-400 transition-all"
-                >
+               <motion.div
+  key={idx}
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  /* This transition handles the initial entrance of the boxes */
+  transition={{ 
+    delay: 0.6 + idx * 0.1,
+    duration: 0.4 
+  }}
+  whileHover={{ scale: 1.02, y: -4 }}
+  /* This specific transition makes the HOVER near-instant (0.15s) */
+  transition={{ 
+    type: "tween", 
+    ease: "easeOut", 
+    duration: 0.15 
+  }}
+  /* Removed transition-shadow to prevent it from fighting with Framer Motion */
+  className="group bg-teal-50 border border-teal-200 rounded-xl p-6 cursor-pointer hover:shadow-lg hover:border-teal-400 transition-colors duration-150"
+>
                   {/* Minimal icons - just simple lines */}
                   <div className="flex items-center justify-center w-8 h-8 mb-3 text-teal-600">
                     {idx === 0 && (
